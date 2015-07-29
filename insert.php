@@ -12,7 +12,37 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 } 
 
- 
+//check if any fields are blank. If blank field exists kill script and throw error
+ if(!isset($first) || trim($first) == '') 
+{
+   echo "First Name Field Empty";
+   die();
+}
+
+if(!isset($last) || trim($last) == '')
+{
+   echo "Last Name Field Empty";
+   die();
+}
+
+if(!isset($birthday) || trim($birthday) == '')
+{
+   echo "Birthday Field Empty";
+   die();
+}
+
+if(!isset($age) || trim($age) == '')
+{
+   echo "Age Field Empty";
+   die();
+}
+
+if(!isset($address) || trim($address) == '')
+{
+   echo "Address Field Empty";
+   die();
+}
+
 
  
 
@@ -61,6 +91,8 @@ echo "</table>";
 
 mysqli_close($conn);
 }
+
+
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
