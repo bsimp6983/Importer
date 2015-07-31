@@ -2,6 +2,7 @@
 include once 'connection.php';
 
 
+
 if(isset($_POST['submit']))
 {
 
@@ -15,24 +16,32 @@ if(isset($_POST['submit']))
 
 
     while(($fileop = fgetcsv($handle,1000,",")) !==false){
+       
 
-  $first = $fileop[0];
+
+        $first = $fileop[0];
         $last = $fileop[1];
         $birthday = $fileop[2];
         $age = $fileop[3];
-        $address = $fileop[4];      
+        $address = $fileop[4];
 
-	  $sql = mysqli_query($conn,"INSERT INTO `mytable` (first, last, birthday, age, address) VALUES ('$first','$last','$birthday','$age','$address')");
-		$getdata =  "SELECT * FROM mytable";
-		$results = mysqli_query($conn,$getdata);
+
+
+
+
+
     
     }//end while
 
-
+$sql = $conn->prepare("INSERT INTO `mytable` (first, last, birthday, age, address) VALUES ('$first','$last','$birthday','$age','$address')");
+		$getdata =  "SELECT * FROM mytable";
+		$results = mysqli_query($conn,$getdata);
 
 if(mysqli_num_rows($results) >=1)
  {
-	
+	 $sql = mysqli_query($conn,"INSERT INTO `mytable` (first, last, birthday, age, address) VALUES ('$first','$last','$birthday','$age','$address')");
+		$getdata =  "SELECT * FROM mytable";
+		$results = mysqli_query($conn,$getdata);
     
  echo "<table><tr><th>First</th><th>Last</th><th>Birthday</th><th>Age</th><th>Address</th></tr>";
 while($row = mysqli_fetch_assoc($results))
