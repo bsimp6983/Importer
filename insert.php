@@ -1,5 +1,3 @@
-	
-
 <?php
 
 include 'connection.php';
@@ -19,9 +17,20 @@ $first = trim($fileop[0]);
     $age = trim($fileop[3]);
     $address = trim($fileop[4]);
 
+
+
+if (!is_numeric($age) || $age == 0 )
+{
+$empty_value_found = true;
+    echo "Age must not be zero or non numeric. ";
+break;
+}
+
 if (($rawData = strptime($birthday, '%m/%d/%G')) !== false) {
 } else {
-  echo 'Wrong date format';
+ $empty_value_found = true;
+  echo "'{$birthday}' is NOT a valid date";
+ $empty_value_found = true;
 break;
 }
 
@@ -59,7 +68,7 @@ list ($first, $last, $birthday, $age, $address) = $arr;
 
 
  $sql = mysqli_query($conn,"INSERT INTO `mytable` (first, last, birthday, age, address) VALUES ('$first','$last','$birthday','$age','$address')");
-		$getdata =  "SELECT * FROM mytable WHERE first='$first' and last='$last and birthday=$birthday and age='$age' and address='$address'";
+		$getdata =  "SELECT * FROM mytable";
 		$results = mysqli_query($conn,$getdata);
    }
 } 
@@ -88,6 +97,7 @@ echo "</table>";
 
 <head>
 <meta charset="utf-8">
+
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
 
 
