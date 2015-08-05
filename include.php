@@ -1,5 +1,5 @@
 <?php
-include once 'connection.php';
+include 'connection.php';
 
 $query = "SELECT * FROM mytable";
 $result = mysqli_query($conn,$query);

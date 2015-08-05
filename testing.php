@@ -32,8 +32,9 @@ th{font-family:tahoma; background-color: #CCC; color: white; border: none;}
 <div id="container"><div id="form">
  <form method="post" action="insert.php" target="tablebox" enctype="multipart/form-data">
  <input type="file" name="file" required /> 
-  <input type="submit" name="submit" value="Submit" /> </form> 
- <p>This page will show all sql data results when the page is loaded. I have kept two database entries within my database to show this functionality. When the user uploads a csv file, the table will be appended with the records added to MySQL database. Any commas in the csv file will break the code because it is comma delimited. Thank you!</p></div></div>
+  <input type="submit" name="submit" value="Submit" />
+<a href="include.php"><input type="button"></a>  </form> 
+ <p>  Commas in the CSV are not permitted. Field titles must be omitted. Fields must NOT be empty.Birthday must be a valid date format. </p></div></div>
 <iframe name="tablebox" src="show.php" width="100%" height="350px" frameBorder="0"  allowtransparency="true" >
 </iframe>
 </body>
