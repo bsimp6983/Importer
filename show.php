@@ -1,5 +1,5 @@
 <?php
-include once 'connection.php';
+include 'connection.php';
 
 
 $getdata =  "SELECT * FROM mytable";
