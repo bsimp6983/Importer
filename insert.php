@@ -11,38 +11,28 @@ $toWrite = array();
 
 while(($fileop = fgetcsv($handle,1000,",")) !==false){
   
-$first = trim($fileop[0]);
-    $last = trim($fileop[1]);
-    $birthday = trim($fileop[2]);
-    $age = trim($fileop[3]);
-    $address = trim($fileop[4]);
+    $Level1= trim($fileop[0]);
+    $Level2= trim($fileop[1]);
+    $Level3= trim($fileop[2]);
+    $Client= trim($fileop[3]);
+    $HideReasonInReports= trim($fileop[4]);
+    $Line= trim($fileop[5]);
+    $IsChangeOver= trim($fileop[6]);
+    $Duration= trim($fileop[7]);
 
-
-
-if (!is_numeric($age) || $age == 0 )
-{
-$empty_value_found = true;
-    echo "Age must not be zero or non numeric. ";
-break;
-}
-
-if (($rawData = strptime($birthday, '%m/%d/%G')) !== false) {
-} else {
- $empty_value_found = true;
-  echo "'{$birthday}' is NOT a valid date";
- $empty_value_found = true;
-break;
-}
 
 
 
 
     if (
-        empty($first) 
-        || empty($last) 
-        || empty($birthday) 
-        || empty($age) 
-        || empty($address) 
+        empty($Level1) 
+        || empty($Level2) 
+        || empty($Level3) 
+        || empty($Client) 
+        || empty($HideReasonInReports) 
+        || empty($Line) 
+        || empty($IsChangeOver)
+        || empty($Duration)  
     ) {
         $empty_value_found = true;
         echo "empty field please check";
@@ -57,35 +47,31 @@ else{
 }
 
 // now we check - if there no empty values
+
 if (!$empty_value_found) {
+
 foreach ($toWrite as $arr){
-	  $first = trim($fileop[0]);
-    $last = trim($fileop[1]);
-    $birthday = trim($fileop[2]);
-    $age = trim($fileop[3]);
-    $address = trim($fileop[4]);
-list ($first, $last, $birthday, $age, $address) = $arr; 
+
+    $Level1= trim($fileop[0]);
+    $Level2= trim($fileop[1]);
+    $Level3= trim($fileop[2]);
+    $Client= trim($fileop[3]);
+    $HideReasonInReports= trim($fileop[4]);
+    $Line= trim($fileop[5]);
+    $IsChangeOver= trim($fileop[6]);
+    $Duration= trim($fileop[7]);
+
+list ($Level1, $Level2, $Level3, $Client, $HideReasonInReports, $Line, $IsChangeOver, $Duration) = $arr; 
 
 
- $sql = mysqli_query($conn,"INSERT INTO `mytable` (first, last, birthday, age, address) VALUES ('$first','$last','$birthday','$age','$address')");
+ $sql = mysqli_query($conn,"INSERT INTO `mytable` (Level1, Level2, Level3, Client, HideReasonInReports, Line, IsChangeOver, Duration) VALUES ('$Level1','$Level2','$Level3','$Client','$HideReasonInReports','$Line','$IsChangeOver','$Duration')");
 		$getdata =  "SELECT * FROM mytable";
 		$results = mysqli_query($conn,$getdata);
    }
 } 
-  
-      if(mysqli_num_rows($results) >1)
- {
-	
- echo "<table><tr><th>First</th><th>Last</th><th>Birthday</th><th>Age</th><th>Address</th></tr>";
- }
-while($row = mysqli_fetch_assoc($results))
-{
-echo "<tr><td>" . $row["first"]. "</td><td>" . $row["last"]. "</td><td>" . $row["birthday"]. "</td><td>" . $row["age"]. "</td><td>" . $row["address"]. "</td></tr>";
 
-
-}//end while
-echo "</table>";
 }
+
      mysqli_close($conn);
 
 
@@ -112,5 +98,7 @@ th{font-family:tahoma; background-color: #CCC; color: white; border: none;}
 
 </body>
 </html>
+
+
 
 
